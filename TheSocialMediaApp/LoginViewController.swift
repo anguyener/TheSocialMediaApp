@@ -17,17 +17,18 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let username = UserDefaults.standard.string(forKey: "username") {
-            usernameTextField.text = username
-        }
+        //if let username = UserDefaults.standard.string(forKey: "username") {
+        // usernameTextField.text = username }
+        
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         //if(usernameTextField.text ) //not a valid user
         //else if not a matching pass
         //else trigger delegate
-        let user = Login(name: "<#T##String#>", password: <#T##String#>)
-        NetworkService().fetchToken()
+        let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
+        //dont have token until user and pass are sent, but need token to confirm user and pass????
+        NetworkService(token: Token(token: "")).fetchToken(user: user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         present(homeViewController, animated: true, completion: nil)

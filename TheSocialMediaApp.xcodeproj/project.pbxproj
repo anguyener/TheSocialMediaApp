@@ -25,6 +25,9 @@
 		797EE1951FBE9A100047FD39 /* DirectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE1941FBE9A100047FD39 /* DirectViewController.swift */; };
 		797EE1971FBE9A250047FD39 /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE1961FBE9A250047FD39 /* SingleViewController.swift */; };
 		797EE1991FBE9A300047FD39 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE1981FBE9A300047FD39 /* LikesViewController.swift */; };
+		797EE19B1FBEB5230047FD39 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE19A1FBEB5230047FD39 /* MessageCell.swift */; };
+		797EE19F1FBEB5390047FD39 /* DirectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE19E1FBEB5390047FD39 /* DirectCell.swift */; };
+		797EE1A11FBEB5C00047FD39 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EE1A01FBEB5C00047FD39 /* ContactCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		797EE1941FBE9A100047FD39 /* DirectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectViewController.swift; sourceTree = "<group>"; };
 		797EE1961FBE9A250047FD39 /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		797EE1981FBE9A300047FD39 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
+		797EE19A1FBEB5230047FD39 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		797EE19E1FBEB5390047FD39 /* DirectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectCell.swift; sourceTree = "<group>"; };
+		797EE1A01FBEB5C00047FD39 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +131,11 @@
 				794C37691FBBB33B0020CCEB /* Direct.swift */,
 				794C37631FBBB3150020CCEB /* Message.swift */,
 				7910A6951FBE4CAE00142AD0 /* LikedMessage.swift */,
-				794C376B1FBBB34D0020CCEB /* NetworkService.swift */,
 				7960CDF51FB50A6200B3DBE1 /* Main.storyboard */,
+				797EE19A1FBEB5230047FD39 /* MessageCell.swift */,
+				797EE1A01FBEB5C00047FD39 /* ContactCell.swift */,
+				797EE19E1FBEB5390047FD39 /* DirectCell.swift */,
+				794C376B1FBBB34D0020CCEB /* NetworkService.swift */,
 				7910A6931FBE4A3000142AD0 /* LoginViewController.swift */,
 				797EE1901FBE99B30047FD39 /* HomeViewController.swift */,
 				797EE1921FBE99FD0047FD39 /* ContactsViewController.swift */,
@@ -293,10 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				794C37641FBBB3150020CCEB /* Message.swift in Sources */,
+				797EE1A11FBEB5C00047FD39 /* ContactCell.swift in Sources */,
 				794C37681FBBB3300020CCEB /* Token.swift in Sources */,
 				7960CDF21FB50A6200B3DBE1 /* AppDelegate.swift in Sources */,
 				7910A6961FBE4CAE00142AD0 /* LikedMessage.swift in Sources */,
 				797EE1991FBE9A300047FD39 /* LikesViewController.swift in Sources */,
+				797EE19F1FBEB5390047FD39 /* DirectCell.swift in Sources */,
 				797EE1951FBE9A100047FD39 /* DirectViewController.swift in Sources */,
 				7910A6941FBE4A3000142AD0 /* LoginViewController.swift in Sources */,
 				797EE1971FBE9A250047FD39 /* SingleViewController.swift in Sources */,
@@ -305,6 +316,7 @@
 				794C37661FBBB31C0020CCEB /* Login.swift in Sources */,
 				794C376C1FBBB34D0020CCEB /* NetworkService.swift in Sources */,
 				797EE1931FBE99FD0047FD39 /* ContactsViewController.swift in Sources */,
+				797EE19B1FBEB5230047FD39 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

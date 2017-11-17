@@ -23,6 +23,7 @@ class NetworkService {
         request.httpMethod = "POST"
         let task = URLSession(configuration: .ephemeral).dataTask(with: request) { (data, response, error) in
             self.token = try! JSONDecoder().decode(Token.self, from: data!)
+            UserDefaults.standard.set(self.token, forKey: "token")
         }
         task.resume()
     }
