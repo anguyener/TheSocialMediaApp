@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         //else trigger delegate
         let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
         //dont have token until user and pass are sent, but need token to confirm user and pass????
-        NetworkService(token: Token(token: "")).fetchToken(user: user)
+        NetworkService(token: Token(token: nil)).fetchToken(user: user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         present(homeViewController, animated: true, completion: nil)

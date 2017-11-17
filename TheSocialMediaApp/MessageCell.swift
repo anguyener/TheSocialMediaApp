@@ -9,6 +9,8 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
+    
+    var likeViewController: UITableViewController
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -20,7 +22,7 @@ class MessageCell: UITableViewCell {
     
     @IBOutlet weak var likeButton: UIButton!
     
-    func configure(_ with: Message) {
+    func configure(_ with: Message, LVC: UITableViewController) {
         nameLabel.text = with.user
         
         DateFormatter.dateFormat(fromTemplate: "MMM dd, yyyy", options: 0, locale: Locale(identifier: "en_US"))
@@ -30,6 +32,8 @@ class MessageCell: UITableViewCell {
         numButton.setTitle(String(describing: with.likedBy?.capacity), for: UIControlState.normal) //normal? is that ok for highlighted and selected...
         likeButton.setTitle("Like", for: UIControlState.normal)
        // likeButton.setTitle("Liked", for: UIControlState.selected)
+        
+        self.likeViewController = LVC
     }
     
     @IBAction func likeButtonTapped(_ sender: Any) {
@@ -37,10 +41,10 @@ class MessageCell: UITableViewCell {
     }
     
     @IBAction func numButtonTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let LikesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
+      //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      //  let LikesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
       //  present(LikesViewController, animated: true, completion: nil) //needs to be in a delegate?
-        
+        likeViewController.present(likeViewController, animated: true, completion: nil)
     }
     
 }

@@ -22,6 +22,10 @@ class LikesViewController: UITableViewController {
         likedBy = message.likedBy //again need delegate to pass on message being used.
     }
     
+    func configure(m: Message) {
+        //how to require/pass in message when create instance of this view controller
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

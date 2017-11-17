@@ -47,7 +47,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure(messages[indexPath.item])
+        cell.configure(messages[indexPath.item], LVC: LikesViewController)
         return cell
     }
     
