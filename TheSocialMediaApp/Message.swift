@@ -16,4 +16,5 @@ struct Message: Codable {
     let id: String?
     let replyTo: String?
     let likedBy: [String]?
+    
 }

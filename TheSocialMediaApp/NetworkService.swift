@@ -97,7 +97,7 @@ class NetworkService {
     }
     
     func postLike(messageID: String) {
-        let message = LikedMessage(id: messageID)
+        let message = LikedMessage(likedMessageID: messageID)
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/like")!
         var request = URLRequest(url: url)
         request.addValue(token.token, forHTTPHeaderField: "token")

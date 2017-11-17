@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="TheSocialMediaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="TheSocialMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,15 +73,15 @@
             </objects>
             <point key="canvasLocation" x="116" y="118.29085457271366"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="YC4-YQ-G3N">
             <objects>
-                <viewController id="mZm-w8-PJY" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="mZm-w8-PJY" customClass="HomeViewController" customModule="TheSocialMediaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="75G-yD-kDh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="etV-8o-sd4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="etV-8o-sd4" userLabel="tableView">
                                 <rect key="frame" x="0.0" y="98" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -173,15 +173,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RPW-jT-BoY"/>
                     </view>
+                    <connections>
+                        <outlet property="messages" destination="etV-8o-sd4" id="8j3-jJ-0Le"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxz-oP-oj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="876" y="152"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Contacts View Controller-->
         <scene sceneID="YHZ-6Q-H6p">
             <objects>
-                <tableViewController id="8H5-i8-46n" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ContactsViewController" id="8H5-i8-46n" customClass="ContactsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fxh-lM-uBC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,10 +222,10 @@
             </objects>
             <point key="canvasLocation" x="1590" y="152"/>
         </scene>
-        <!--View Controller-->
+        <!--Single View Controller-->
         <scene sceneID="IJC-p7-B5f">
             <objects>
-                <viewController id="w63-Zt-ni3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingleViewController" id="w63-Zt-ni3" customClass="SingleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eX9-I7-s5M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -367,10 +370,10 @@
             </objects>
             <point key="canvasLocation" x="134" y="890"/>
         </scene>
-        <!--View Controller-->
+        <!--Direct View Controller-->
         <scene sceneID="K1X-3b-k90">
             <objects>
-                <viewController id="6N4-iY-H3c" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DirectViewController" id="6N4-iY-H3c" customClass="DirectViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gA6-Pi-QZq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -448,12 +451,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lDU-0e-hQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="152"/>
+            <point key="canvasLocation" x="2354" y="152"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Likes View Controller-->
         <scene sceneID="zIQ-RP-gFY">
             <objects>
-                <tableViewController id="0Uf-3z-yIr" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LikesViewController" id="0Uf-3z-yIr" customClass="LikesViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wxw-6N-GRr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -489,7 +492,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp5-7C-2VG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="916"/>
+            <point key="canvasLocation" x="1030" y="889"/>
         </scene>
     </scenes>
 </document>

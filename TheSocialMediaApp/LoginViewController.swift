@@ -26,6 +26,11 @@ class LoginViewController: UIViewController {
         //if(usernameTextField.text ) //not a valid user
         //else if not a matching pass
         //else trigger delegate
+        let user = Login(name: "<#T##String#>", password: <#T##String#>)
+        NetworkService().fetchToken()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        present(homeViewController, animated: true, completion: nil)
     }
     
 }
