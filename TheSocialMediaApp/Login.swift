@@ -11,4 +11,5 @@ import Foundation
 struct Login: Codable {
     let name: String
     let password: String
+    
 }

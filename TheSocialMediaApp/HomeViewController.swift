@@ -18,20 +18,28 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var greetingLabel: UILabel!
     
-    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var messageTextField: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self //as! UITableViewDataSource // -_-
+        tableView.dataSource = self
         messages = network.getMessages()
         greetingLabel.text = "Welcome! Write something to get started."
-        messageTextView.delegate = self as! UITextViewDelegate
+        messageTextField.delegate = self as! UITextFieldDelegate
     }
     
+    
+//Posts message and resets the text field to the placeholder
     @IBAction func postButtonTapped(_ sender: Any) {
-        network.postMessage(message: Message(user: , text: messageTextView.text, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
-        messageTextView.delete(<#Any?#>)
+        network.postMessage(message: Message(user: network.getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+        messageTextField.text = messageTextField.placeholder
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? SingleViewController else { return }
+        guard let source = sender as? MessageCell else { return }
+        destination.message = source.message
     }
 }
 extension HomeViewController: UITableViewDataSource {
@@ -47,7 +55,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure(messages[indexPath.item], LVC: LikesViewController)
+        cell.configure(messages[indexPath.item])
         return cell
     }
     

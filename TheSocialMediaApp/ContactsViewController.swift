@@ -23,6 +23,12 @@ class ContactsViewController: UITableViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? DirectViewController else { return }
+        guard let source = sender as? String else { return } //does this need to be contactCell and add global to contactCell and init?
+        destination.recipient = source
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

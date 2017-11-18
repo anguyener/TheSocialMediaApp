@@ -11,6 +11,7 @@ import UIKit
 class DirectViewController: UIViewController {
     
     var directs: [Direct] = []
+    var recipient: String?
     
     let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
@@ -18,20 +19,22 @@ class DirectViewController: UIViewController {
     
     @IBOutlet weak var directTable: UITableView!
     
-    @IBOutlet weak var directTextView: UITextView!
+    @IBOutlet weak var directTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         directTable.dataSource = self
         directs = network.getDirect()
         
-        toLabel.text = //name clicked on... known by delegate?
-        directTextView.delegate = self as! UITextViewDelegate
+        toLabel.text = recipient!//name clicked on... known by delegate?
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        network.postDirect(directM: Direct(to: toLabel.text, from: , message: directTextView.text))
-        directTextView.delete(<#T##sender: Any?##Any?#>)
+        network.postDirect(directM: Direct(to: toLabel.text!, from: network.getName(),
+                                           message: Message(user: network.getName(), text: directTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: toLabel.text!, likedBy: nil)))
+      
+        directTextField.text = directTextField.placeholder
     }
 }
 

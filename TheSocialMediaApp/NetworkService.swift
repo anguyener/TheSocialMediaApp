@@ -11,9 +11,13 @@ import Foundation
 class NetworkService {
     
     var token: Token
-    
+   
     init(token: Token) {
         self.token = token
+    }
+    
+    func getName() -> String {
+        return UserDefaults.standard.string(forKey: "username")!
     }
     
     func fetchToken(user: Login){
@@ -91,7 +95,7 @@ class NetworkService {
         request.addValue(token.token!, forHTTPHeaderField: "token")
         request.httpBody = try! JSONEncoder().encode(directM)
         request.httpMethod = "POST"
-      
+        
         let postD = URLSession(configuration: .ephemeral).dataTask(with: request) { (d, response, error) in
         }
         postD.resume()
@@ -106,7 +110,7 @@ class NetworkService {
         request.httpMethod = "POST"
         
         let likeTask = URLSession(configuration: .ephemeral).dataTask(with: request) { (d, response, error) in
-        
+            
         }
         likeTask.resume()
     }

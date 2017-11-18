@@ -11,6 +11,7 @@ import UIKit
 class LikesViewController: UITableViewController {
     var likedBy: [String] = []
     
+    
     let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     
@@ -19,11 +20,7 @@ class LikesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         likedTable.dataSource = self
-        likedBy = message.likedBy //again need delegate to pass on message being used.
-    }
-    
-    func configure(m: Message) {
-        //how to require/pass in message when create instance of this view controller
+        //likedBy = self.likedBy //again need delegate to pass on message being used.
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

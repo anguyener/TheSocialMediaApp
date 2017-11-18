@@ -10,13 +10,15 @@ import UIKit
 
 class SingleViewController: UIViewController {
     
+    var message: Message?
+    
     let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var singleMessage: UITableView!
     
     @IBOutlet weak var headerLabel: UILabel!
     
-    @IBOutlet weak var commentBox: UITextView!
+    @IBOutlet weak var commentBox: UITextField!
     
     @IBOutlet weak var commentsTableView: UITableView!
     
@@ -24,14 +26,21 @@ class SingleViewController: UIViewController {
         super.viewDidLoad()
         singleMessage.dataSource = self
         headerLabel.text = "Comment"
-        commentBox.delegate = self as! UITextViewDelegate
+        commentBox.delegate = self as! UITextFieldDelegate
         commentsTableView.dataSource = self
     }
     
-    @IBAction func PostButtonTapped(_ sender: Any) {
-        network.postMessage(message: Message(user: , text: commentBox.text, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
-        commentBox.delete(<#T##sender: Any?##Any?#>)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? LikesViewController else { return }
+       // guard let source = sender as? RecipieCell else { return }
+        destination.likedBy = (message?.likedBy)!
     }
+    
+    @IBAction func PostButtonTapped(_ sender: Any) {
+        network.postMessage(message: Message(user: network.getName(), text: commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+        //commentBox.delete() //how do I clear commentBox?
+    }
+    
 }
 //this is for first table view, can you have two table views in one view Controller? extend again?
 extension SingleViewController: UITableViewDataSource {
@@ -46,7 +55,7 @@ extension SingleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure( ///messages[indexPath.item]) how get single message? delegate passes it on?
+        cell.configure(message!) 
         return cell
     }
 }
