@@ -12,8 +12,8 @@ class DirectViewController: UIViewController {
     
     var directs: [Direct] = []
     var recipient: String?
-    
-    let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    var network: NetworkService
+   // let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var toLabel: UILabel!
     
@@ -21,11 +21,16 @@ class DirectViewController: UIViewController {
     
     @IBOutlet weak var directTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
+        directs = network.getDirect()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         directTable.dataSource = self
-        directs = network.getDirect()
+      //  directs = network.getDirect()
         
         toLabel.text = recipient!//name clicked on... known by delegate?
     }

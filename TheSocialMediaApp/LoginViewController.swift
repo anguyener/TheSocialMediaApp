@@ -15,6 +15,10 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        //???????????????????????????????????????????????????
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       //  if let username = UserDefaults.standard.string(forKey: "username") {
@@ -28,8 +32,7 @@ class LoginViewController: UIViewController {
         //else trigger delegate
         let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
         UserDefaults.standard.set(user.name, forKey: "username")
-        //dont have token until user and pass are sent, but need token to confirm user and pass????
-        NetworkService(token: Token(token: nil)).fetchToken(user: user)
+        NetworkService().fetchToken(user: user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
         present(homeViewController, animated: true, completion: nil)

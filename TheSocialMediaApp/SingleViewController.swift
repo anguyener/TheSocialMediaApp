@@ -11,8 +11,8 @@ import UIKit
 class SingleViewController: UIViewController {
     
     var message: Message?
-    
-    let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    var network: NetworkService
+  //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var singleMessage: UITableView!
     
@@ -21,6 +21,10 @@ class SingleViewController: UIViewController {
     @IBOutlet weak var commentBox: UITextField!
     
     @IBOutlet weak var commentsTableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+         network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

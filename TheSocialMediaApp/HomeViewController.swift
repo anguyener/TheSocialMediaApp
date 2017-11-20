@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     var messages: [Message] = []
     
-    let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    var network: NetworkService
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,13 +20,17 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var messageTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
+        messages = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!).getMessages()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        messages = network.getMessages()
+      //  messages = network.getMessages()
         greetingLabel.text = "Welcome! Write something to get started."
-        messageTextField.delegate = self as! UITextFieldDelegate
+     //   messageTextField.delegate = self as! UITextFieldDelegate
     }
     
     
@@ -58,6 +62,5 @@ extension HomeViewController: UITableViewDataSource {
         cell.configure(messages[indexPath.item])
         return cell
     }
-    
     
 }

@@ -12,14 +12,18 @@ class ContactsViewController: UITableViewController {
     
     var contacts: [String] = []
     
-    let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    var network: NetworkService
     
     @IBOutlet var contactsTable: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+         network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contactsTable.dataSource = self
-        contacts = network.getUserList()
+       // contacts = network.getUserList()
         
     }
     
