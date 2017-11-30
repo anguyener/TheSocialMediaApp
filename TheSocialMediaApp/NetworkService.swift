@@ -11,16 +11,12 @@ import Foundation
 class NetworkService {
     
     var theToken: String?
-    
-//    init(Token: String) {
-//        theToken = Token
-//    }
    
     func getName() -> String {
         return UserDefaults.standard.string(forKey: "username")!
     }
     
-    func fetchToken(user: Login) {
+    func fetchToken(user: Login, closure: @escaping () -> ()) {
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/login")!
         var request = URLRequest(url: url)
         request.httpBody = try! JSONEncoder().encode(user)
@@ -28,6 +24,8 @@ class NetworkService {
         let task = URLSession(configuration: .ephemeral).dataTask(with: request) { (data, response, error) in
             self.theToken = try! JSONDecoder().decode(Token.self, from: data!).token!
             UserDefaults.standard.set(self.theToken, forKey: "token")
+            UserDefaults.standard.synchronize()
+            closure()
         }
         task.resume()
     }

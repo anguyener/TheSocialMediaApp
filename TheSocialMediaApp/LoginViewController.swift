@@ -33,10 +33,13 @@ class LoginViewController: UIViewController {
         //else trigger delegate
         let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
         UserDefaults.standard.set(user.name, forKey: "username")
-        network.fetchToken(user: user)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
-        present(homeViewController, animated: true, completion: nil)
+        network.fetchToken(user: user) {
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
+                self.present(homeViewController, animated: true, completion: nil)
+            }
+        }
     }
 }
 extension LoginViewController: UITextFieldDelegate {
