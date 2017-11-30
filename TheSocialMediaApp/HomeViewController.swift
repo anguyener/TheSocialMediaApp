@@ -10,9 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    var messages: [Message] = []
-    
-    var network: NetworkService
+    var messages: [Message]? = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,12 +19,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-        network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
-        messages = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!).getMessages()
+        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+         messages = NetworkService().getMessages()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         tableView.dataSource = self
       //  messages = network.getMessages()
         greetingLabel.text = "Welcome! Write something to get started."
@@ -36,7 +35,7 @@ class HomeViewController: UIViewController {
     
 //Posts message and resets the text field to the placeholder
     @IBAction func postButtonTapped(_ sender: Any) {
-        network.postMessage(message: Message(user: network.getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+        NetworkService().postMessage(message: Message(user: NetworkService().getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
         messageTextField.text = messageTextField.placeholder
     }
     
@@ -53,13 +52,13 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return messages!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure(messages[indexPath.item])
+        cell.configure(messages![indexPath.item])
         return cell
     }
     

@@ -9,17 +9,17 @@
 import UIKit
 
 class LikesViewController: UITableViewController {
-    var likedBy: [String] = []
-    var network: NetworkService
+    var likedBy: [String]? = []
+    var message: Message?
     
-  //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     
     @IBOutlet var likedTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-         network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
-       // likedBy = message.numLikes
+        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+        likedBy = message!.likedBy
     }
     
     override func viewDidLoad() {
@@ -33,11 +33,11 @@ class LikesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likedBy.count
+        return likedBy!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let liked = likedBy[indexPath.item]
+        let liked = likedBy![indexPath.item]
         let cell  = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         cell.nameLabel.text = liked
         return cell

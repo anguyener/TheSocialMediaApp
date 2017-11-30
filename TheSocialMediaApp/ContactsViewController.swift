@@ -10,14 +10,13 @@ import UIKit
 
 class ContactsViewController: UITableViewController {
     
-    var contacts: [String] = []
-    
-    var network: NetworkService
+    var contacts: [String]? = []
     
     @IBOutlet var contactsTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-         network = NetworkService(Token: UserDefaults.standard.string(forKey: "token")!)
+        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+        contacts = NetworkService().getUserList()
     }
     
     override func viewDidLoad() {
@@ -38,11 +37,11 @@ class ContactsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        return contacts!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contact = contacts[indexPath.item]
+        let contact = contacts![indexPath.item]
         let cell  = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         cell.nameLabel.text = contact
         return cell
