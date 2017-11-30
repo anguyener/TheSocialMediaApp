@@ -11,6 +11,7 @@ import UIKit
 class SingleViewController: UIViewController {
     
     var message: Message?
+    var network = NetworkService()
   //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var singleMessage: UITableView!
@@ -22,7 +23,7 @@ class SingleViewController: UIViewController {
     @IBOutlet weak var commentsTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+        network.theToken = UserDefaults.standard.string(forKey: "token")
     }
     
     override func viewDidLoad() {
@@ -40,7 +41,7 @@ class SingleViewController: UIViewController {
     }
     
     @IBAction func PostButtonTapped(_ sender: Any) {
-       NetworkService().postMessage(message: Message(user: NetworkService().getName(), text: commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+       network.postMessage(message: Message(user: network.getName(), text: commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
         //commentBox.delete() //how do I clear commentBox?
     }
     

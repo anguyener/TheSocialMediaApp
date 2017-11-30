@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var messages: [Message]? = []
+    var network = NetworkService()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,23 +20,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
-         messages = NetworkService().getMessages()
+        network.theToken = UserDefaults.standard.string(forKey: "token")
+        messages = network.getMessages()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         tableView.dataSource = self
-      //  messages = network.getMessages()
+        //  messages = network.getMessages()
         greetingLabel.text = "Welcome! Write something to get started."
-     //   messageTextField.delegate = self as! UITextFieldDelegate
+        //   messageTextField.delegate = self as! UITextFieldDelegate
     }
     
     
-//Posts message and resets the text field to the placeholder
+    //Posts message and resets the text field to the placeholder
     @IBAction func postButtonTapped(_ sender: Any) {
-        NetworkService().postMessage(message: Message(user: NetworkService().getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+        network.postMessage(message: Message(user: network.getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
         messageTextField.text = messageTextField.placeholder
     }
     

@@ -11,12 +11,13 @@ import UIKit
 class ContactsViewController: UITableViewController {
     
     var contacts: [String]? = []
+    var network = NetworkService()
     
     @IBOutlet var contactsTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
-        contacts = NetworkService().getUserList()
+        network.theToken = UserDefaults.standard.string(forKey: "token")
+        contacts = network.getUserList()
     }
     
     override func viewDidLoad() {

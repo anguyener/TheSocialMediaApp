@@ -10,13 +10,14 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    var network = NetworkService()
     
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-      NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+      network.theToken = UserDefaults.standard.string(forKey: "token")
     }
     
     override func viewDidLoad() {
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController {
         //else trigger delegate
         let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
         UserDefaults.standard.set(user.name, forKey: "username")
-        NetworkService().fetchToken(user: user)
+        network.fetchToken(user: user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
         present(homeViewController, animated: true, completion: nil)

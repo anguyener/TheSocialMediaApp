@@ -11,14 +11,12 @@ import UIKit
 class LikesViewController: UITableViewController {
     var likedBy: [String]? = []
     var message: Message?
-    
-    //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
-    
+    var network = NetworkService()
     
     @IBOutlet var likedTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        NetworkService().theToken = UserDefaults.standard.string(forKey: "token")
+        network.theToken = UserDefaults.standard.string(forKey: "token")
         likedBy = message!.likedBy
     }
     

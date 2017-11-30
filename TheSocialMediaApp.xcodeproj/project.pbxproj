@@ -60,7 +60,6 @@
 		7960CDF61FB50A6200B3DBE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7960CDF81FB50A6200B3DBE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7960CDFB1FB50A6200B3DBE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7960CDFD1FB50A6200B3DBE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7960CE021FB50A6200B3DBE1 /* TheSocialMediaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheSocialMediaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7960CE061FB50A6200B3DBE1 /* TheSocialMediaAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheSocialMediaAppTests.swift; sourceTree = "<group>"; };
 		7960CE081FB50A6200B3DBE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 				797EE1981FBE9A300047FD39 /* LikesViewController.swift */,
 				7960CDF81FB50A6200B3DBE1 /* Assets.xcassets */,
 				7960CDFA1FB50A6200B3DBE1 /* LaunchScreen.storyboard */,
-				7960CDFD1FB50A6200B3DBE1 /* Info.plist */,
 			);
 			path = TheSocialMediaApp;
 			sourceTree = "<group>";
