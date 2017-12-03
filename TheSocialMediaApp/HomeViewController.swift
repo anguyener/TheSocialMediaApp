@@ -21,10 +21,14 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
-        messages = network!.getMessages() {
-      //  print("messages: \(messages)")
-       // self.tableView.reloadData() //???????/ where put?
+        messages = network!.getMessages() { (result) in
+          //  DispatchQueue.global().async {
+            self.messages = result
+           // }
+            
+            
         }
+        self.tableView.reloadData() //messages don't exist outside of function for closure, why?
     }
     
     override func viewDidLoad() {
