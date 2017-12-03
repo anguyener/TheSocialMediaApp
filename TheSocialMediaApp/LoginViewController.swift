@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
+                homeViewController.network = self.network
                 self.present(homeViewController, animated: true, completion: nil)
             }
         }

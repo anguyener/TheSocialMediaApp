@@ -50,7 +50,7 @@ class NetworkService {
         return userList
     }
     
-    func getMessages() -> [Message] {
+    func getMessages(closure: @escaping () -> ()) -> [Message] {
         let urlMessages = URL(string: "https://obscure-crag-65480.herokuapp.com/messages")!
         var messages: [Message] = []
         var request3 = URLRequest(url: urlMessages)
@@ -59,7 +59,8 @@ class NetworkService {
         
         let getMTask = URLSession(configuration: .ephemeral).dataTask(with: request3) { (d, response, error) in
             messages = try! JSONDecoder().decode([Message].self, from: d!)
-            
+            print("MESSAGES: \(messages)")
+            closure()
         }
         getMTask.resume()
         return messages
