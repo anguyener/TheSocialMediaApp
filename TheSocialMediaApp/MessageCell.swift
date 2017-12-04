@@ -24,7 +24,7 @@ class MessageCell: UITableViewCell {
     
     func configure(_ with: Message) {
         message = with
-        nameLabel.text = message!.text//with.user
+        nameLabel.text = message!.user//with.user
         
         DateFormatter.dateFormat(fromTemplate: "MMM dd, yyyy", options: 0, locale: Locale(identifier: "en_US"))
         dateLabel.text = "now"//DateFormatter.string(message.date)

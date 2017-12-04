@@ -30,11 +30,6 @@ class NetworkService {
         task.resume()
     }
     
-    func getToken() -> String {
-        return theToken!
-    }
-    
-    
     func getUserList() -> [String] {
         let urlUsers = URL(string: "https://obscure-crag-65480.herokuapp.com/users")!
         var userList = [""]
@@ -61,6 +56,7 @@ class NetworkService {
             DispatchQueue.main.async {
                 messages = try! JSONDecoder().decode([Message].self, from: d!)
                 closure(messages)
+                
             }
             //closure(try! JSONDecoder().decode([Message].self, from: d!))
            // messages = try! JSONDecoder().decode([Message].self, from: d!)

@@ -146,12 +146,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UG-DL-XfK">
-                                <rect key="frame" x="16" y="64" width="300" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9b-DQ-gvV">
                                 <rect key="frame" x="313" y="95" width="35" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -166,22 +160,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UG-DL-XfK">
+                                <rect key="frame" x="16" y="58" width="42" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="etV-8o-sd4" firstAttribute="top" secondItem="RPW-jT-BoY" secondAttribute="bottom" constant="-485" id="86a-60-Xag"/>
-                            <constraint firstItem="RPW-jT-BoY" firstAttribute="trailing" secondItem="7UG-DL-XfK" secondAttribute="trailing" constant="59" id="Els-PC-j2x"/>
-                            <constraint firstItem="RPW-jT-BoY" firstAttribute="trailing" secondItem="YLB-V5-2At" secondAttribute="trailing" constant="84" id="G2U-72-qKI"/>
-                            <constraint firstItem="RPW-jT-BoY" firstAttribute="top" secondItem="7UG-DL-XfK" secondAttribute="top" id="NDO-4j-vlT"/>
+                            <constraint firstItem="YLB-V5-2At" firstAttribute="top" secondItem="7UG-DL-XfK" secondAttribute="bottom" constant="8" id="JKw-i6-XoU"/>
+                            <constraint firstItem="RPW-jT-BoY" firstAttribute="top" secondItem="7UG-DL-XfK" secondAttribute="top" constant="6" id="NDO-4j-vlT"/>
                             <constraint firstItem="X9b-DQ-gvV" firstAttribute="leading" secondItem="RPW-jT-BoY" secondAttribute="leading" constant="313" id="PJq-IL-JMH"/>
-                            <constraint firstItem="etV-8o-sd4" firstAttribute="width" secondItem="RPW-jT-BoY" secondAttribute="width" id="QnH-2n-GtG"/>
-                            <constraint firstItem="7UG-DL-XfK" firstAttribute="leading" secondItem="RPW-jT-BoY" secondAttribute="leading" constant="16" id="Qo3-TN-fIE"/>
-                            <constraint firstItem="etV-8o-sd4" firstAttribute="leading" secondItem="RPW-jT-BoY" secondAttribute="trailing" constant="-375" id="WPW-FJ-3W8"/>
+                            <constraint firstItem="etV-8o-sd4" firstAttribute="top" secondItem="YLB-V5-2At" secondAttribute="bottom" constant="5" id="Ze7-dI-21s"/>
                             <constraint firstItem="YLB-V5-2At" firstAttribute="leading" secondItem="RPW-jT-BoY" secondAttribute="leading" constant="16" id="c4f-nQ-fG3"/>
+                            <constraint firstItem="7UG-DL-XfK" firstAttribute="centerX" secondItem="RPW-jT-BoY" secondAttribute="centerX" constant="-150.5" id="f9i-o1-xVk"/>
                             <constraint firstItem="etV-8o-sd4" firstAttribute="height" secondItem="RPW-jT-BoY" secondAttribute="height" constant="-69" id="fCQ-Fv-DpJ"/>
+                            <constraint firstItem="X9b-DQ-gvV" firstAttribute="leading" secondItem="YLB-V5-2At" secondAttribute="trailing" constant="22" id="gWf-UN-zuX"/>
+                            <constraint firstItem="7UG-DL-XfK" firstAttribute="leading" secondItem="RPW-jT-BoY" secondAttribute="leading" constant="16" id="grL-LA-Gam"/>
                             <constraint firstItem="X9b-DQ-gvV" firstAttribute="leading" secondItem="etV-8o-sd4" secondAttribute="trailing" constant="-62" id="ihi-1r-SKz"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="X9b-DQ-gvV" secondAttribute="trailing" constant="20" symbolic="YES" id="juB-FU-Naz"/>
                             <constraint firstItem="X9b-DQ-gvV" firstAttribute="top" secondItem="RPW-jT-BoY" secondAttribute="top" constant="31" id="knc-vd-HHc"/>
+                            <constraint firstItem="etV-8o-sd4" firstAttribute="width" secondItem="RPW-jT-BoY" secondAttribute="width" id="qpx-Fn-XvJ"/>
                             <constraint firstItem="YLB-V5-2At" firstAttribute="top" secondItem="RPW-jT-BoY" secondAttribute="top" constant="34" id="ufN-9q-KQG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RPW-jT-BoY"/>
