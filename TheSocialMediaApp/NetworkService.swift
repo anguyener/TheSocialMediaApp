@@ -58,8 +58,7 @@ class NetworkService {
                 closure(messages)
                 
             }
-            //closure(try! JSONDecoder().decode([Message].self, from: d!))
-           // messages = try! JSONDecoder().decode([Message].self, from: d!)
+            
         }
         getMTask.resume()
         return messages

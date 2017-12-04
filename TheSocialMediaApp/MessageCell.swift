@@ -25,12 +25,9 @@ class MessageCell: UITableViewCell {
     func configure(_ with: Message) {
         message = with
         nameLabel.text = message!.user//with.user
-        
-        DateFormatter.dateFormat(fromTemplate: "MMM dd, yyyy", options: 0, locale: Locale(identifier: "en_US"))
-        dateLabel.text = "now"//DateFormatter.string(message.date)
-        
+        dateLabel.text = DateFormatter.localizedString(from: message!.date, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.none)
         messageLabel.text = message!.text
-        numButton.setTitle(String(describing: message!.likedBy?.capacity), for: UIControlState.normal) //normal? is that ok for highlighted and selected...
+        numButton.setTitle(String(describing: message!.likedBy!.capacity), for: UIControlState.normal) //normal? is that ok for highlighted and selected...
         likeButton.setTitle("Like", for: UIControlState.normal)
         // likeButton.setTitle("Liked", for: UIControlState.selected)
         
@@ -39,13 +36,14 @@ class MessageCell: UITableViewCell {
     @IBAction func likeButtonTapped(_ sender: Any) {
         likeButton.setTitle("Liked", for: UIControlState.normal)
         numButton.setTitle(String(describing: (message!.likedBy?.capacity)!+1), for: UIControlState.normal)
+        message?.likedBy?.append(UserDefaults.standard.string(forKey: "username")!)
     }
     
     @IBAction func numButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let LikesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
-      //  present(LikesViewController, animated: true, completion: nil) //needs to be in a delegate?
-        LikesViewController.present(LikesViewController, animated: true, completion: nil)
+        let LVC = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
+        
+        HomeViewController().present(LVC, animated: true, completion: nil) // -__-
     }
     
 }

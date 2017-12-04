@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
         messages = network!.getMessages() { (result) in
-            self.messages = result
+            self.messages = result.sorted(by: { $0.date.compare($1.date) == .orderedDescending})
             self.tableView.reloadData()
         }
          //messages don't exist outside of function for closure, why?
