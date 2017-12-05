@@ -78,12 +78,28 @@ extension SingleViewController: UITableViewDataSource {
         var cell: MessageCell?
         if tableView == self.singleMessage {
             cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
-            cell!.configure(message!)
+            cell!.configure(message!, delegate: self)
         }
         else if tableView == self.commentsTableView {
             cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
-            cell!.configure(comments![indexPath.item])
+            cell!.configure(comments![indexPath.item], delegate: self)
         }
         return cell!
     }
+}
+
+extension SingleViewController: MessageCellDelegate {
+    func performLike(id: String?) {
+        network?.postLike(messageID: id!) {
+            
+        }
+    }
+    
+    func showDetail(message: Message?) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let LVC = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
+        LVC.network = self.network
+        self.present(LVC, animated: true, completion: nil)
+    }
+    
 }

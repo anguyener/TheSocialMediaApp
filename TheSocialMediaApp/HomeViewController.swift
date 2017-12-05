@@ -69,8 +69,25 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure(messages![indexPath.item])
+        cell.configure(messages![indexPath.item],delegate: self)
         return cell
+    }
+    
+}
+
+extension HomeViewController: MessageCellDelegate {
+    func performLike(id: String?) {
+        network?.postLike(messageID: id!) {
+        
+        }
+        self.tableView.reloadData()
+    }
+    
+    func showDetail(message: Message?) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let likesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
+        likesViewController.network = self.network
+        self.present(likesViewController, animated: true, completion: nil)
     }
     
 }

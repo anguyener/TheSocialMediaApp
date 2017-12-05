@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol MessageCellDelegate {
+    func performLike(id: String?)
+    func showDetail(message: Message?)
+}
+
 class MessageCell: UITableViewCell {
     
     var message: Message?
-    var network = NetworkService() //hmmmm not sure if MessageCell should have access to network. but need it for liking messages
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -23,7 +27,10 @@ class MessageCell: UITableViewCell {
     
     @IBOutlet weak var likeButton: UIButton!
     
-    func configure(_ with: Message) {
+    var delegate: MessageCellDelegate?
+    
+    func configure(_ with: Message, delegate: MessageCellDelegate) {
+        self.delegate = delegate
         message = with
         nameLabel.text = message!.user//with.user
         dateLabel.text = DateFormatter.localizedString(from: message!.date, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.none)
@@ -37,19 +44,11 @@ class MessageCell: UITableViewCell {
     @IBAction func likeButtonTapped(_ sender: Any) {
         likeButton.setTitle("Liked", for: UIControlState.normal)
         numButton.setTitle(String(describing: (message!.likedBy?.capacity)!+1), for: UIControlState.normal)
-        network.postLike(messageID: message!.id!, closure: {
-            //um stuff
-        })
+        delegate?.performLike(id: message?.id)
         message?.likedBy?.append(UserDefaults.standard.string(forKey: "username")!)
     }
     
-    @IBAction func numButtonTapped(_ sender: Any) { //Message cell sends to new view controller?        
-        
-        performSequeWithIdentifier("LikesViewController", sender: sender)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let LVC = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
-        
-        HomeViewController().present(LVC, animated: true, completion: nil) // -__- this is so wrong....
+    @IBAction func numButtonTapped(_ sender: Any) { //Message cell sends to new view controller?
+        delegate?.showDetail(message: message)
     }
-    
 }

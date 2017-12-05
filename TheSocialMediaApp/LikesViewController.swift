@@ -11,12 +11,11 @@ import UIKit
 class LikesViewController: UITableViewController {
     var likedBy: [String]? = []
     var message: Message?
-    var network = NetworkService()
-    
+    var network: NetworkService?
     @IBOutlet var likedTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        network.theToken = UserDefaults.standard.string(forKey: "token")
+        network!.theToken = UserDefaults.standard.string(forKey: "token")
         likedBy = message!.likedBy
     }
     
@@ -41,4 +40,3 @@ class LikesViewController: UITableViewController {
         return cell
     }
 }
-
