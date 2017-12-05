@@ -22,10 +22,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
         messages = network!.getMessages() { (result) in
-            self.messages = result.sorted(by: { $0.date.compare($1.date) == .orderedDescending})
+            self.messages = result.filter({ $0.replyTo == nil}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
             self.tableView.reloadData()
         }
-         //messages don't exist outside of function for closure, why?
+        //messages don't exist outside of function for closure, why?
     }
     
     override func viewDidLoad() {
@@ -37,10 +37,13 @@ class HomeViewController: UIViewController {
         //   messageTextField.delegate = self as! UITextFieldDelegate
     }
     
-    
     //Posts message and resets the text field to the placeholder
     @IBAction func postButtonTapped(_ sender: Any) {
-        network?.postMessage(message: Message(user: network!.getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil))
+        network?.postMessage(message: Message(user: network!.getName(), text: messageTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil)) {
+            DispatchQueue.main.async {
+                self.viewWillAppear(true)
+            }
+        }
         messageTextField.text = ""
         self.tableView.reloadData()
     }
@@ -49,6 +52,8 @@ class HomeViewController: UIViewController {
         guard let destination = segue.destination as? SingleViewController else { return }
         guard let source = sender as? MessageCell else { return }
         destination.message = source.message
+        destination.network = self.network!
+        self.present(destination, animated: true, completion: nil)
     }
 }
 extension HomeViewController: UITableViewDataSource {

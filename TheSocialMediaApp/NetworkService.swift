@@ -11,11 +11,11 @@ import Foundation
 class NetworkService {
     
     var theToken: String?
-   
+    
     func getName() -> String {
         return UserDefaults.standard.string(forKey: "username")!
     }
-    
+
     func fetchToken(user: Login, closure: @escaping () -> ()) {
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/login")!
         var request = URLRequest(url: url)
@@ -30,7 +30,7 @@ class NetworkService {
         task.resume()
     }
     
-    func getUserList() -> [String] {
+    func getUserList(closure: @escaping ([String]) -> ()) -> [String] { //user closure like getMessages
         let urlUsers = URL(string: "https://obscure-crag-65480.herokuapp.com/users")!
         var userList = [""]
         var request2 = URLRequest(url: urlUsers)
@@ -39,7 +39,7 @@ class NetworkService {
         
         let getTask = URLSession(configuration: .ephemeral).dataTask(with: request2) { (d, response, error) in
             userList = try! JSONDecoder().decode([String].self, from: d!)
-            
+            closure(userList)
         }
         getTask.resume()
         return userList
@@ -56,15 +56,13 @@ class NetworkService {
             DispatchQueue.main.async {
                 messages = try! JSONDecoder().decode([Message].self, from: d!)
                 closure(messages)
-                
             }
-            
         }
         getMTask.resume()
         return messages
     }
     
-    func postMessage(message: Message) {
+    func postMessage(message: Message, closure: @escaping () -> ()) {
         let urlMessages2 = URL(string: "https://obscure-crag-65480.herokuapp.com/messages")! //different for post?
         var requestPM = URLRequest(url: urlMessages2)
         requestPM.addValue(theToken!, forHTTPHeaderField: "token")
@@ -73,11 +71,12 @@ class NetworkService {
         
         let postMTask = URLSession(configuration: .ephemeral).dataTask(with: requestPM) { (d, response, error) in
             let response = try! JSONDecoder().decode([String].self, from: d!)
+            closure()
         }
         postMTask.resume()
     }
     
-    func getDirect() -> [Direct] {
+    func getDirect(closure: @escaping ([Direct]) -> ()) -> [Direct] {
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/direct")!
         var directs: [Direct] = []
         var request = URLRequest(url: url)
@@ -86,12 +85,13 @@ class NetworkService {
         
         let directTask = URLSession(configuration: .ephemeral).dataTask(with: request) { (d, response, error) in
             directs = try! JSONDecoder().decode([Direct].self, from: d!)
+            closure(directs)
         }
         directTask.resume()
         return directs
     }
     
-    func postDirect(directM: Direct) {
+    func postDirect(directM: Direct, closure: @escaping () -> ()) {
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/direct")!
         var request = URLRequest(url: url)
         request.addValue(theToken!, forHTTPHeaderField: "token")
@@ -99,11 +99,12 @@ class NetworkService {
         request.httpMethod = "POST"
         
         let postD = URLSession(configuration: .ephemeral).dataTask(with: request) { (d, response, error) in
+            closure()
         }
         postD.resume()
     }
     
-    func postLike(messageID: String) {
+    func postLike(messageID: String, closure: @escaping () -> ()) {
         let message = LikedMessage(likedMessageID: messageID)
         let url = URL(string: "https://obscure-crag-65480.herokuapp.com/like")!
         var request = URLRequest(url: url)
@@ -112,7 +113,7 @@ class NetworkService {
         request.httpMethod = "POST"
         
         let likeTask = URLSession(configuration: .ephemeral).dataTask(with: request) { (d, response, error) in
-            
+            closure()
         }
         likeTask.resume()
     }

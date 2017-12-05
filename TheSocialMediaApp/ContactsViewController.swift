@@ -17,7 +17,10 @@ class ContactsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network.theToken = UserDefaults.standard.string(forKey: "token")
-        contacts = network.getUserList()
+        contacts = network.getUserList() { (result) in
+            self.contacts = result
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class ContactsViewController: UITableViewController {
         guard let destination = segue.destination as? DirectViewController else { return }
         guard let source = sender as? String else { return } //does this need to be contactCell and add global to contactCell and init?
         destination.recipient = source
+        destination.network = network
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

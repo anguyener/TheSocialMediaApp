@@ -12,8 +12,8 @@ class DirectViewController: UIViewController {
     
     var directs: [Direct] = []
     var recipient: String?
-    var network = NetworkService()
-   // let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
+    var network: NetworkService?
+    // let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var toLabel: UILabel!
     
@@ -22,8 +22,11 @@ class DirectViewController: UIViewController {
     @IBOutlet weak var directTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-        network.theToken = UserDefaults.standard.string(forKey: "token")
-        directs = network.getDirect()
+        network!.theToken = UserDefaults.standard.string(forKey: "token")
+        directs = network!.getDirect() { (result) in
+            self.directs = result.sorted(by: { $0.message.date.compare($1.message.date) == .orderedDescending})
+            self.directTable.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -33,9 +36,12 @@ class DirectViewController: UIViewController {
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        network.postDirect(directM: Direct(to: toLabel.text!, from: network.getName(),
-                                           message: Message(user: network.getName(), text: directTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: toLabel.text!, likedBy: nil)))
-      
+        network!.postDirect(directM: Direct(to: toLabel.text!, from: network!.getName(),
+                                           message: Message(user: network!.getName(), text: directTextField.text!, date: Date(), imgURL: nil, id: nil, replyTo: toLabel.text!, likedBy: nil))) {
+                                            DispatchQueue.main.async {
+                                                self.viewWillAppear(true)
+                                            }
+        }
         directTextField.text = directTextField.placeholder
     }
 }
