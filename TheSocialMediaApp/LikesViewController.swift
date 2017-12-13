@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikesViewController: UITableViewController {
+class LikesViewController: UIViewController {
     var likedBy: [String]? = []
     var message: Message?
     var network: NetworkService?
@@ -24,16 +24,18 @@ class LikesViewController: UITableViewController {
         likedTable.dataSource = self
         //likedBy = self.likedBy //again need delegate to pass on message being used.
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
+}
+
+extension LikesViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedBy!.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let liked = likedBy![indexPath.item]
         let cell  = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         cell.nameLabel.text = liked

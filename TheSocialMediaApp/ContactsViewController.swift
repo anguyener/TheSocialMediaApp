@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactsViewController: UITableViewController {
+class ContactsViewController: UIViewController {
     
     var contacts: [String]? = []
     var network = NetworkService()
@@ -19,14 +19,14 @@ class ContactsViewController: UITableViewController {
         network.theToken = UserDefaults.standard.string(forKey: "token")
         contacts = network.getUserList() { (result) in
             self.contacts = result
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contactsTable.dataSource = self
-       // contacts = network.getUserList()
+        // contacts = network.getUserList()
         
     }
     
@@ -36,16 +36,19 @@ class ContactsViewController: UITableViewController {
         destination.recipient = source
         destination.network = network
     }
+}
+
+extension ContactsViewController: UITableViewDataSource {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts!.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contact = contacts![indexPath.item]
         let cell  = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         cell.nameLabel.text = contact

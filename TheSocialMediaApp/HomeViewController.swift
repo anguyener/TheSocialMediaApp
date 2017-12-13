@@ -76,6 +76,7 @@ extension HomeViewController: UITableViewDataSource {
 }
 
 extension HomeViewController: MessageCellDelegate {
+   
     func performLike(id: String?) {
         network?.postLike(messageID: id!) {
         
@@ -85,9 +86,12 @@ extension HomeViewController: MessageCellDelegate {
     
     func showDetail(message: Message?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let likesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
+        let likesViewController = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController //?
         likesViewController.network = self.network
-        self.present(likesViewController, animated: true, completion: nil)
+        likesViewController.message = message
+        navigationController?.pushViewController(likesViewController, animated: true)
+     //   self.navigationController!.present(navController, animated: true, completion: nil)
+        //self.present(likesViewController, animated: true, completion: nil)
     }
     
 }
