@@ -36,9 +36,18 @@ class LoginViewController: UIViewController {
         network.fetchToken(user: user) {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
+                let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                let homeNavigationController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as! UINavigationController
+                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                 homeViewController.network = self.network
-                self.present(homeViewController, animated: true, completion: nil)
+                self.present(tabBarController, animated: true, completion: nil)
+                
+            
+             //   let homeViewController = tabBarController.viewControllers![0]
+              //  let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
+             //   homeViewController.network = self.network
+              //  tabBarController.network = self.network
+               // self.present(tabBarController, animated: true, completion: nil)
             }
         }
     }

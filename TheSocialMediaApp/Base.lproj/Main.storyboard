@@ -588,7 +588,7 @@
         <!--Navigation Controller-->
         <scene sceneID="OQu-P8-l0e">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RzA-w6-JgK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ContactsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="RzA-w6-JgK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="UB2-fi-O5B"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Efd-f3-idZ">
@@ -607,7 +607,7 @@
         <!--Home-->
         <scene sceneID="5g9-Vi-nzh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zb0-V3-msp" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="zb0-V3-msp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="mPL-cm-enT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w79-y1-Mr0">

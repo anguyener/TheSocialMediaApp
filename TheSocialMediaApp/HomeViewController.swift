@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
             self.messages = result.filter({ $0.replyTo == nil}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
             self.tableView.reloadData()
         }
-        //messages don't exist outside of function for closure, why?
     }
     
     override func viewDidLoad() {
