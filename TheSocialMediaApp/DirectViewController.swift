@@ -25,8 +25,9 @@ class DirectViewController: UIViewController {
         network!.theToken = UserDefaults.standard.string(forKey: "token")
         directs = network!.getDirect() { (result) in
             self.directs = result.sorted(by: { $0.message.date.compare($1.message.date) == .orderedDescending})
-            self.directTable.reloadData()
+       //     self.directTable.reloadData()
         }
+        directTable.reloadData()
     }
     
     override func viewDidLoad() {

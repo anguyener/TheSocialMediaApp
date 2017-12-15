@@ -22,17 +22,17 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
         messages = network!.getMessages() { (result) in
-            self.messages = result.filter({ $0.replyTo == nil}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
-            self.tableView.reloadData()
+            DispatchQueue.main.async { // -__-
+                self.messages = result.filter({ $0.replyTo == nil}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.tableView.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.dataSource = self
         greetingLabel.text = "Welcome! Write something to get started."
-        //   messageTextField.delegate = self as! UITextFieldDelegate
     }
     
     //Posts message and resets the text field to the placeholder
@@ -43,15 +43,20 @@ class HomeViewController: UIViewController {
             }
         }
         messageTextField.text = ""
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? SingleViewController else { return }
-        guard let source = sender as? MessageCell else { return }
-        destination.message = source.message
-        destination.network = self.network!
-        self.present(destination, animated: true, completion: nil)
+        DispatchQueue.main.async { //causes nil issues with message in SingleVC
+            guard let destination = segue.destination as? SingleViewController else { return }
+            guard let source = sender as? MessageCell else { return }
+            destination.message = source.message
+            destination.network = self.network!
+            //  DispatchQueue.main.async { // application tried to present modally an active controller
+            self.present(destination, animated: true, completion: nil)
+        }
     }
 }
 extension HomeViewController: UITableViewDataSource {
@@ -70,16 +75,15 @@ extension HomeViewController: UITableViewDataSource {
         cell.configure(messages![indexPath.item],delegate: self)
         return cell
     }
-    
 }
 
 extension HomeViewController: MessageCellDelegate {
-   
+    
     func performLike(id: String?) {
-        network?.postLike(messageID: id!) {
-        
+        DispatchQueue.main.async { //sync- exc bad instruction
+            self.network?.postLike(messageID: id!) {}
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
     }
     
     func showDetail(message: Message?) {
@@ -88,8 +92,5 @@ extension HomeViewController: MessageCellDelegate {
         likesViewController.network = self.network
         likesViewController.message = message
         navigationController?.pushViewController(likesViewController, animated: true)
-     //   self.navigationController!.present(navController, animated: true, completion: nil)
-        //self.present(likesViewController, animated: true, completion: nil)
-    }
-    
+    }    
 }

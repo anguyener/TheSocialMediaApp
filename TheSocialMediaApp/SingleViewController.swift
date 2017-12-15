@@ -13,7 +13,6 @@ class SingleViewController: UIViewController {
     var message: Message?
     var comments: [Message]?
     var network: NetworkService?
-    //  let network = NetworkService(token: UserDefaults.value(forKey: "token") as! Token)
     
     @IBOutlet weak var singleMessage: UITableView!
     
@@ -25,17 +24,19 @@ class SingleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
-        comments = network!.getMessages() { (result) in
-            self.comments = result.filter({ $0.replyTo == self.message?.replyTo}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
-            self.commentsTableView.reloadData()
+        //  DispatchQueue.main.async {
+        self.comments = self.network!.getMessages() { (result) in
+            self.comments = result.filter({ $0.replyTo == self.message?.user}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
+            //   self.commentsTableView.reloadData()
+            //   }
         }
+        commentsTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         singleMessage.dataSource = self
         headerLabel.text = "Comment"
-     //   commentBox.delegate = self as! UITextFieldDelegate
         commentsTableView.dataSource = self
     }
     
@@ -46,13 +47,13 @@ class SingleViewController: UIViewController {
     }
     
     @IBAction func PostButtonTapped(_ sender: Any) {
-        network!.postMessage(message: Message(user: network!.getName(), text: commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil)) {
+        self.network!.postMessage(message: Message(user: self.network!.getName(), text: self.commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil)) {
             DispatchQueue.main.async {
-                self.viewWillAppear(true)
+                self.viewWillAppear(true) // o-O
             }
         }
-        commentBox.text = ""
-        self.commentsTableView.reloadData()
+        self.commentBox.text = ""
+        self.commentsTableView.reloadData() //?
     }
     
 }
@@ -69,7 +70,7 @@ extension SingleViewController: UITableViewDataSource {
             count = 1
         }
         else if tableView == self.commentsTableView {
-            count = (comments?.count)!
+            count = comments?.count ?? 0
         }
         return count
     }

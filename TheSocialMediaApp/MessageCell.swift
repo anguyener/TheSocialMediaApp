@@ -35,7 +35,7 @@ class MessageCell: UITableViewCell {
         nameLabel.text = message!.user//with.user
         dateLabel.text = DateFormatter.localizedString(from: message!.date, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.none)
         messageLabel.text = message!.text
-        numButton.setTitle(String(describing: message!.likedBy!.capacity), for: UIControlState.normal) //normal? is that ok for highlighted and selected...
+        numButton.setTitle(String(describing: message!.likedBy!.count), for: UIControlState.normal) //normal? is that ok for highlighted and selected...
         likeButton.setTitle("Like", for: UIControlState.normal)
         // likeButton.setTitle("Liked", for: UIControlState.selected)
         
@@ -43,12 +43,12 @@ class MessageCell: UITableViewCell {
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         likeButton.setTitle("Liked", for: UIControlState.normal)
-        numButton.setTitle(String(describing: (message!.likedBy?.capacity)!), for: UIControlState.normal)
+        numButton.setTitle(String(describing: (message!.likedBy?.count)!), for: UIControlState.normal)
         delegate?.performLike(id: message?.id)
         message?.likedBy?.append(UserDefaults.standard.string(forKey: "username")!)
     }
     
-    @IBAction func numButtonTapped(_ sender: Any) { //Message cell sends to new view controller?
+    @IBAction func numButtonTapped(_ sender: Any) {
         delegate?.showDetail(message: message)
     }
 }

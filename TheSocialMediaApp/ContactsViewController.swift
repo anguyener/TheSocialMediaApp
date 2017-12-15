@@ -17,12 +17,13 @@ class ContactsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
-        DispatchQueue.main.async {
+       // DispatchQueue.main.async {
             self.contacts = self.network?.getUserList() { (result) in
                 self.contacts = result
-                self.contactsTable.reloadData()
-            }
+              //  self.contactsTable.reloadData()
+        //    }
         }
+        contactsTable.reloadData()
     }
     
     override func viewDidLoad() {

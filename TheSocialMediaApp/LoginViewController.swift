@@ -28,9 +28,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        //if(usernameTextField.text ) //not a valid user
-        //else if not a matching pass
-        //else trigger delegate
         let user = Login(name: usernameTextField.text!, password: passwordTextField.text!)
         UserDefaults.standard.set(user.name, forKey: "username")
         network.fetchToken(user: user) {
@@ -44,12 +41,7 @@ class LoginViewController: UIViewController {
                 let contacts = next?.viewControllers.first as? ContactsViewController
                 contacts?.network = self.network
                 self.present(tabBarController, animated: true, completion: nil)
-            
-             //   let homeViewController = tabBarController.viewControllers![0]
-              //  let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?
-             //   homeViewController.network = self.network
-              //  tabBarController.network = self.network
-               // self.present(tabBarController, animated: true, completion: nil)
+             //   self.present(contacts!, animated: true, completion: nil)
             }
         }
     }
