@@ -43,7 +43,7 @@ class MessageCell: UITableViewCell {
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         likeButton.setTitle("Liked", for: UIControlState.normal)
-        numButton.setTitle(String(describing: (message!.likedBy?.capacity)!+1), for: UIControlState.normal)
+        numButton.setTitle(String(describing: (message!.likedBy?.capacity)!), for: UIControlState.normal)
         delegate?.performLike(id: message?.id)
         message?.likedBy?.append(UserDefaults.standard.string(forKey: "username")!)
     }

@@ -11,23 +11,23 @@ import UIKit
 class ContactsViewController: UIViewController {
     
     var contacts: [String]? = []
-    var network = NetworkService()
+    var network: NetworkService?
     
     @IBOutlet var contactsTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        network.theToken = UserDefaults.standard.string(forKey: "token")
-        contacts = network.getUserList() { (result) in
-            self.contacts = result
-            //self.tableView.reloadData()
+        network?.theToken = UserDefaults.standard.string(forKey: "token")
+        DispatchQueue.main.async {
+            self.contacts = self.network?.getUserList() { (result) in
+                self.contacts = result
+                self.contactsTable.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contactsTable.dataSource = self
-        // contacts = network.getUserList()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

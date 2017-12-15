@@ -35,7 +35,7 @@ class SingleViewController: UIViewController {
         super.viewDidLoad()
         singleMessage.dataSource = self
         headerLabel.text = "Comment"
-        commentBox.delegate = self as! UITextFieldDelegate
+     //   commentBox.delegate = self as! UITextFieldDelegate
         commentsTableView.dataSource = self
     }
     

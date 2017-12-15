@@ -37,11 +37,13 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-                let homeNavigationController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as! UINavigationController
-                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                homeViewController.network = self.network
+                let first = tabBarController.viewControllers?.first as? UINavigationController
+                let next = tabBarController.viewControllers?.dropFirst().first as? UINavigationController //?
+                let home = first?.viewControllers.first as? HomeViewController
+                home?.network = self.network
+                let contacts = next?.viewControllers.first as? ContactsViewController
+                contacts?.network = self.network
                 self.present(tabBarController, animated: true, completion: nil)
-                
             
              //   let homeViewController = tabBarController.viewControllers![0]
               //  let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController //Can I do this for Tab Bar Controller?

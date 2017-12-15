@@ -31,7 +31,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
-        //  messages = network.getMessages()
         greetingLabel.text = "Welcome! Write something to get started."
         //   messageTextField.delegate = self as! UITextFieldDelegate
     }
