@@ -10,15 +10,13 @@ import UIKit
 
 class DirectCell: UITableViewCell {
     
+    var word: Direct?
+    
     @IBOutlet weak var messageLabel: UILabel!
     
-    @IBOutlet weak var likeButton: UIButton!
-    
     func configure(_ with: Direct) {
-        messageLabel.text = with.message.text
-        
-        likeButton.setTitle("Like", for: UIControlState.normal)
-        likeButton.setTitle("Liked", for: UIControlState.selected)
+        word = with
+        messageLabel.text = word?.message.text
     }
     
 }

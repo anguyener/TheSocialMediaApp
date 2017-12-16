@@ -236,7 +236,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbi-ga-18k">
-                                                    <rect key="frame" x="15" y="32" width="352" height="111"/>
+                                                    <rect key="frame" x="15" y="67" width="352" height="55"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -264,7 +264,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="icC-MK-Mot" secondAttribute="trailing" constant="16" id="KYd-bW-Lf8"/>
                                                 <constraint firstItem="oRb-kN-3Li" firstAttribute="leading" secondItem="WuK-Ss-Euv" secondAttribute="leading" constant="15" id="LwL-aa-HUu"/>
                                                 <constraint firstItem="uuW-K6-qq9" firstAttribute="leading" secondItem="WuK-Ss-Euv" secondAttribute="leading" constant="16" id="MZ3-iG-hjI"/>
-                                                <constraint firstItem="bbi-ga-18k" firstAttribute="top" secondItem="icC-MK-Mot" secondAttribute="bottom" id="PE3-HL-Dxf"/>
+                                                <constraint firstItem="bbi-ga-18k" firstAttribute="top" secondItem="icC-MK-Mot" secondAttribute="bottom" constant="35" id="PE3-HL-Dxf"/>
                                                 <constraint firstAttribute="bottom" secondItem="XmB-ZD-WYx" secondAttribute="bottom" constant="0.5" id="U1M-PL-pwU"/>
                                                 <constraint firstItem="XmB-ZD-WYx" firstAttribute="leading" secondItem="oRb-kN-3Li" secondAttribute="trailing" constant="8" id="UD4-VV-Dg8"/>
                                                 <constraint firstItem="icC-MK-Mot" firstAttribute="leading" secondItem="uuW-K6-qq9" secondAttribute="trailing" constant="20" id="UW7-Gj-rfI"/>
@@ -272,8 +272,8 @@
                                                 <constraint firstItem="icC-MK-Mot" firstAttribute="top" secondItem="WuK-Ss-Euv" secondAttribute="top" constant="11" id="cgV-GP-gTh"/>
                                                 <constraint firstAttribute="trailing" secondItem="bbi-ga-18k" secondAttribute="trailing" constant="8" id="ox7-xa-0wb"/>
                                                 <constraint firstItem="bbi-ga-18k" firstAttribute="leading" secondItem="WuK-Ss-Euv" secondAttribute="leading" constant="15" id="pFi-2O-HwL"/>
-                                                <constraint firstAttribute="bottom" secondItem="bbi-ga-18k" secondAttribute="bottom" constant="28.5" id="q1l-ms-Wta"/>
-                                                <constraint firstItem="oRb-kN-3Li" firstAttribute="top" secondItem="bbi-ga-18k" secondAttribute="bottom" constant="-2" id="rxJ-pN-3Nd"/>
+                                                <constraint firstAttribute="bottom" secondItem="bbi-ga-18k" secondAttribute="bottom" constant="49.5" id="q1l-ms-Wta"/>
+                                                <constraint firstItem="oRb-kN-3Li" firstAttribute="top" secondItem="bbi-ga-18k" secondAttribute="bottom" constant="19" id="rxJ-pN-3Nd"/>
                                                 <constraint firstItem="uuW-K6-qq9" firstAttribute="top" secondItem="WuK-Ss-Euv" secondAttribute="top" constant="11" id="wmt-of-ibm"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -287,18 +287,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write comment...." textAlignment="natural" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="3CY-d5-uC9">
-                                <rect key="frame" x="16" y="309" width="272" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZB-dZ-usW">
                                 <rect key="frame" x="16" y="274" width="300" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write comment...." textAlignment="natural" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="3CY-d5-uC9">
+                                <rect key="frame" x="16" y="309" width="272" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSo-7F-S6D">
+                                <rect key="frame" x="313" y="309" width="46" height="30"/>
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="PostButtonTapped:" destination="w63-Zt-ni3" eventType="touchUpInside" id="OJL-J0-41x"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OOP-zg-6tX">
                                 <rect key="frame" x="0.0" y="347" width="375" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -374,18 +381,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSo-7F-S6D">
-                                <rect key="frame" x="313" y="309" width="46" height="30"/>
-                                <state key="normal" title="Post"/>
-                                <connections>
-                                    <action selector="PostButtonTapped:" destination="w63-Zt-ni3" eventType="touchUpInside" id="OJL-J0-41x"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Aeq-h4-UEB" firstAttribute="leading" secondItem="7Q0-3d-VUH" secondAttribute="leading" id="1k7-am-nlN"/>
+                            <constraint firstItem="IZB-dZ-usW" firstAttribute="top" secondItem="Aeq-h4-UEB" secondAttribute="bottom" constant="8" id="2Qb-Zy-q5J"/>
                             <constraint firstItem="IZB-dZ-usW" firstAttribute="top" secondItem="7Q0-3d-VUH" secondAttribute="top" constant="210" id="4iU-m9-NN8"/>
                             <constraint firstItem="OOP-zg-6tX" firstAttribute="leading" secondItem="7Q0-3d-VUH" secondAttribute="leading" id="AWf-VR-4hb"/>
                             <constraint firstItem="3CY-d5-uC9" firstAttribute="leading" secondItem="7Q0-3d-VUH" secondAttribute="leading" constant="16" id="Ax1-eN-Ywm"/>
@@ -394,6 +395,7 @@
                             <constraint firstItem="7Q0-3d-VUH" firstAttribute="trailing" secondItem="wSo-7F-S6D" secondAttribute="trailing" constant="16" id="Ggl-CR-fm2"/>
                             <constraint firstItem="3CY-d5-uC9" firstAttribute="top" secondItem="7Q0-3d-VUH" secondAttribute="top" constant="245" id="HeE-AH-lCs"/>
                             <constraint firstItem="7Q0-3d-VUH" firstAttribute="bottom" secondItem="OOP-zg-6tX" secondAttribute="bottom" id="NVY-Av-kqW"/>
+                            <constraint firstItem="Aeq-h4-UEB" firstAttribute="leading" secondItem="IZB-dZ-usW" secondAttribute="trailing" constant="-316" id="PSu-PE-RyM"/>
                             <constraint firstItem="7Q0-3d-VUH" firstAttribute="trailing" secondItem="Aeq-h4-UEB" secondAttribute="trailing" id="Suo-9V-5d7"/>
                             <constraint firstItem="IZB-dZ-usW" firstAttribute="leading" secondItem="7Q0-3d-VUH" secondAttribute="leading" constant="16" id="YW6-GX-TGw"/>
                             <constraint firstItem="3CY-d5-uC9" firstAttribute="top" secondItem="IZB-dZ-usW" secondAttribute="bottom" constant="11" id="aMA-qu-sGu"/>
@@ -412,11 +414,12 @@
                         <outlet property="commentsTableView" destination="OOP-zg-6tX" id="4tf-wv-ISR"/>
                         <outlet property="headerLabel" destination="IZB-dZ-usW" id="WNH-Xy-4SV"/>
                         <outlet property="singleMessage" destination="Aeq-h4-UEB" id="Lnj-iR-gaS"/>
+                        <segue destination="ycf-6U-Ms2" kind="show" id="by5-Uy-bQW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9RX-R4-oj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="629.60000000000002" y="1064.6176911544228"/>
+            <point key="canvasLocation" x="628" y="1064.6176911544228"/>
         </scene>
         <!--Direct View Controller-->
         <scene sceneID="K1X-3b-k90">

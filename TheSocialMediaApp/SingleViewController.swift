@@ -24,13 +24,13 @@ class SingleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
-        //  DispatchQueue.main.async {
         self.comments = self.network!.getMessages() { (result) in
-            self.comments = result.filter({ $0.replyTo == self.message?.user}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
-            //   self.commentsTableView.reloadData()
-            //   }
+            DispatchQueue.main.async {
+                self.comments = result.filter({ $0.replyTo == self.message?.id}).sorted(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.commentsTableView.reloadData()
+            }
         }
-        commentsTableView.reloadData()
+       // commentsTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -40,20 +40,16 @@ class SingleViewController: UIViewController {
         commentsTableView.dataSource = self
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? LikesViewController else { return }
-        // guard let source = sender as? RecipieCell else { return }
-        destination.likedBy = (message?.likedBy)!
-    }
-    
     @IBAction func PostButtonTapped(_ sender: Any) {
-        self.network!.postMessage(message: Message(user: self.network!.getName(), text: self.commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: nil, likedBy: nil)) {
-            DispatchQueue.main.async {
-                self.viewWillAppear(true) // o-O
-            }
+        self.network!.postMessage(message: Message(user: self.network!.getName(), text: self.commentBox.text!, date: Date(), imgURL: nil, id: nil, replyTo: message?.id, likedBy: nil)) {
+             DispatchQueue.main.async {
+            self.viewWillAppear(true) // o-O
+             }
         }
         self.commentBox.text = ""
-        self.commentsTableView.reloadData() //?
+        DispatchQueue.main.async {
+            self.commentsTableView.reloadData() //?
+        }
     }
     
 }
@@ -91,8 +87,9 @@ extension SingleViewController: UITableViewDataSource {
 
 extension SingleViewController: MessageCellDelegate {
     func performLike(id: String?) {
-        network?.postLike(messageID: id!) {
-            
+        DispatchQueue.main.async {
+            self.network?.postLike(messageID: id!) {}
+            self.singleMessage.reloadData()
         }
     }
     
@@ -100,7 +97,7 @@ extension SingleViewController: MessageCellDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let LVC = storyboard.instantiateViewController(withIdentifier: "LikesViewController") as! LikesViewController
         LVC.network = self.network
-        self.present(LVC, animated: true, completion: nil)
+        LVC.message = message
+        navigationController?.pushViewController(LVC, animated: true)
     }
-    
 }

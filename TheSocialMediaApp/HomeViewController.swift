@@ -49,16 +49,13 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        DispatchQueue.main.async { //causes nil issues with message in SingleVC
             guard let destination = segue.destination as? SingleViewController else { return }
             guard let source = sender as? MessageCell else { return }
             destination.message = source.message
             destination.network = self.network!
-            //  DispatchQueue.main.async { // application tried to present modally an active controller
-            self.present(destination, animated: true, completion: nil)
-        }
     }
 }
+
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,7 +69,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        cell.configure(messages![indexPath.item],delegate: self)
+        cell.configure(messages![indexPath.item],delegate: self) //index out of range when switch back from contacts
         return cell
     }
 }

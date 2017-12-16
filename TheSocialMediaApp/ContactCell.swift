@@ -10,10 +10,13 @@ import UIKit
 
 class ContactCell: UITableViewCell {
     
+    var name: String?
+    
     @IBOutlet weak var nameLabel: UILabel!
     
     func configure(_ with: String) {
-        nameLabel.text = with
+        name = with
+        nameLabel.text = name
     }
     
     

@@ -17,13 +17,13 @@ class ContactsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         network?.theToken = UserDefaults.standard.string(forKey: "token")
-       // DispatchQueue.main.async {
-            self.contacts = self.network?.getUserList() { (result) in
+        self.contacts = self.network?.getUserList() { (result) in
+            DispatchQueue.main.async {
                 self.contacts = result
-              //  self.contactsTable.reloadData()
-        //    }
+                self.contactsTable.reloadData()
+            }
         }
-        contactsTable.reloadData()
+        //  contactsTable.reloadData()
     }
     
     override func viewDidLoad() {
@@ -33,8 +33,8 @@ class ContactsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? DirectViewController else { return }
-        guard let source = sender as? String else { return } //does this need to be contactCell and add global to contactCell and init?
-        destination.recipient = source
+        guard let source = sender as? ContactCell else { return } //does this need to be contactCell and add global to contactCell and init?
+        destination.recipient = source.name
         destination.network = network
     }
 }
@@ -50,11 +50,10 @@ extension ContactsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contact = contacts![indexPath.item]
         let cell  = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
-        cell.nameLabel.text = contact
+        cell.configure(contacts![indexPath.item])
         return cell
     }
     
-    //add cell delegate to direct
+    //add cell delegate to direct?
 }
