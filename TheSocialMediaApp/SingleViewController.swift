@@ -16,8 +16,6 @@ class SingleViewController: UIViewController {
     
     @IBOutlet weak var singleMessage: UITableView!
     
-    @IBOutlet weak var headerLabel: UILabel!
-    
     @IBOutlet weak var commentBox: UITextField!
     
     @IBOutlet weak var commentsTableView: UITableView!
@@ -30,13 +28,11 @@ class SingleViewController: UIViewController {
                 self.commentsTableView.reloadData()
             }
         }
-       // commentsTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         singleMessage.dataSource = self
-        headerLabel.text = "Comment"
         commentsTableView.dataSource = self
     }
     
@@ -51,9 +47,8 @@ class SingleViewController: UIViewController {
             self.commentsTableView.reloadData() //?
         }
     }
-    
 }
-//this is for first table view, can you have two table views in one view Controller? extend again?
+
 extension SingleViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

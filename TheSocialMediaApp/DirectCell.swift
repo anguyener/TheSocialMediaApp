@@ -10,13 +10,14 @@ import UIKit
 
 class DirectCell: UITableViewCell {
     
-    var word: Direct?
+    var message: Direct?
     
     @IBOutlet weak var messageLabel: UILabel!
     
-    func configure(_ with: Direct) {
-        word = with
-        messageLabel.text = word?.message.text
+    func configure(_ with: Direct?, color: UIColor) {
+        message = with
+        messageLabel.text = message?.message.text
+        messageLabel.textColor = color
     }
     
 }
